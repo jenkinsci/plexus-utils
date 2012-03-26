@@ -134,7 +134,9 @@ public class BourneShell
             dir = StringUtils.replace( dir, "'", "\\\'" );
         }
 
-        sb.append( StringUtils.quoteAndEscape( dir, '\"' ) );
+        String quotedDir = StringUtils.quoteAndEscape( dir, '\"', new char[] { '$' }, getQuotingTriggerChars(), '\\', false);
+
+        sb.append( quotedDir  );
         sb.append( " && " );
 
         return sb.toString();
